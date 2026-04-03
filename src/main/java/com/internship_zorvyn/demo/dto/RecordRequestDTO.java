@@ -1,12 +1,11 @@
 package com.internship_zorvyn.demo.dto;
 
+import com.internship_zorvyn.demo.model.RecordType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.Data;
 
 import java.time.LocalDate;
-import com.internship_zorvyn.demo.model.RecordType;
-@Data
+
 public class RecordRequestDTO {
 
     @NotNull
@@ -19,4 +18,21 @@ public class RecordRequestDTO {
     private String category;
     private LocalDate date;
     private String description;
+
+    // CONSTRUCTOR
+    public RecordRequestDTO() {}
+
+    // GETTERS
+    public Double getAmount() { return amount; }
+    public RecordType getType() { return type; }
+    public String getCategory() { return category; }
+    public LocalDate getDate() { return date; }
+    public String getDescription() { return description; }
+
+    // SETTERS
+    public void setAmount(Double amount) { this.amount = amount; }
+    public void setType(RecordType type) { this.type = type; }
+    public void setCategory(String category) { this.category = category; }
+    public void setDate(LocalDate date) { this.date = date; }
+    public void setDescription(String description) { this.description = description; }
 }
