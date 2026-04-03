@@ -1,4 +1,10 @@
-package com.internship_zorvyn.demo.security;
+package com.finance.dashboard.security;
+
+import io.jsonwebtoken.*;
+import org.springframework.stereotype.Component;
+
+import java.util.Date;
+
 @Component
 public class JwtUtil {
 
