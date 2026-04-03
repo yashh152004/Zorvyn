@@ -1,5 +1,16 @@
 package com.internship_zorvyn.demo.controller;
 
+import com.internship_zorvyn.demo.model.Role;
+import com.internship_zorvyn.demo.service.FinancialService;
+import com.internship_zorvyn.demo.dto.RecordRequestDTO;
+import com.internship_zorvyn.demo.dto.RecordResponseDTO;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("/records")
 @RequiredArgsConstructor
@@ -7,9 +18,13 @@ public class FinancialController {
 
     private final FinancialService service;
 
+    public FinancialController() {
+        this.service = null;
+    }
+
     @PostMapping
-    public FinancialRecord create(@Valid @RequestBody RecordRequestDTO dto,
-                                  Authentication auth) {
+    public Object create(@Valid @RequestBody RecordRequestDTO dto,
+                         Authentication auth) {
         return service.create(dto, auth.getName());
     }
 

@@ -1,4 +1,14 @@
-package com.internship_zorvyn.demo.service;
+package com.finance.dashboard.service;
+
+import com.finance.dashboard.dto.RecordRequestDTO;
+import com.finance.dashboard.model.*;
+import com.finance.dashboard.repository.FinancialRecordRepository;
+import com.finance.dashboard.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.*;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
