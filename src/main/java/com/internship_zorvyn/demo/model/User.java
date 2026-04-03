@@ -1,9 +1,13 @@
 package com.internship_zorvyn.demo.model;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 public class User {
 
     @Id
@@ -12,7 +16,7 @@ public class User {
 
     private String name;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     private String password;
