@@ -1,9 +1,10 @@
-package com.finance.dashboard.service;
+package com.internship_zorvyn.demo.service;
 
-import com.finance.dashboard.dto.RecordRequestDTO;
-import com.finance.dashboard.model.*;
-import com.finance.dashboard.repository.FinancialRecordRepository;
-import com.finance.dashboard.repository.UserRepository;
+import com.internship_zorvyn.demo.model.*;
+import com.internship_zorvyn.demo.repository.FinancialRecordRepository;
+import com.internship_zorvyn.demo.repository.UserRepository;
+import com.internship_zorvyn.demo.dto.RecordRequestDTO;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,11 @@ public class FinancialService {
 
     private final FinancialRecordRepository repo;
     private final UserRepository userRepo;
+
+    public FinancialService() {
+        this.repo = null;
+        this.userRepo = null;
+    }
 
     public FinancialRecord create(RecordRequestDTO dto, String email) {
 

@@ -1,4 +1,4 @@
-package com.finance.dashboard.security;
+package com.internship_zorvyn.demo.security;
 
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Component;
