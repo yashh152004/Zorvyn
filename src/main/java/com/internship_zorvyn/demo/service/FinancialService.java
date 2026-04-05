@@ -18,10 +18,7 @@ public class FinancialService {
     private final FinancialRecordRepository repo;
     private final UserRepository userRepo;
 
-    public FinancialService() {
-        this.repo = null;
-        this.userRepo = null;
-    }
+    
 
     public FinancialRecord create(RecordRequestDTO dto, String email) {
 

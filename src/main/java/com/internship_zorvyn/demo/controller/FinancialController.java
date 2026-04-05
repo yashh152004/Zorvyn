@@ -10,17 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping("/records")
 @RequiredArgsConstructor
 public class FinancialController {
 
     private final FinancialService service;
-
-    public FinancialController() {
-        this.service = null;
-    }
 
     @PostMapping
     public Object create(@Valid @RequestBody RecordRequestDTO dto,

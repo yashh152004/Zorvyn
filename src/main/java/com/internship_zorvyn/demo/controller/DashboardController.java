@@ -12,9 +12,6 @@ public class DashboardController {
 
     private final FinancialService service;
 
-    public DashboardController() {
-        this.service = null;
-    }
 
     @GetMapping("/summary")
     public Map<String, Object> summary() {

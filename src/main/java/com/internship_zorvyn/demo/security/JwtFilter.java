@@ -14,46 +14,48 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
+
 @Component
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
-    private final JwtUtil jwt;
-    private final UserRepository repo;
+    private final JwtUtil jwtUtil;
+
+    public JwtFilter() {
+        this.jwtUtil = new JwtUtil();
+    }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest req,
-                                    HttpServletResponse res,
-                                    FilterChain chain)
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
             throws ServletException, IOException {
 
-        String header = req.getHeader("Authorization");
+        String path = request.getServletPath();
 
-        if (header != null && header.startsWith("Bearer ")) {
-
-            String token = header.substring(7);
-            String email = jwt.extractUsername(token);
-
-            if (email != null &&
-                jwt.validateToken(token, email) &&
-                SecurityContextHolder.getContext().getAuthentication() == null) {
-
-                User user = repo.findByEmail(email).orElse(null);
-
-                if (user != null) {
-                    UsernamePasswordAuthenticationToken auth =
-                            new UsernamePasswordAuthenticationToken(
-                                    email,
-                                    null,
-                                    List.of(() -> "ROLE_" + user.getRole())
-                            );
-
-                    auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
-                    SecurityContextHolder.getContext().setAuthentication(auth);
-                }
-            }
+        // 🔥 Skip auth endpoints
+        if (path.startsWith("/auth")) {
+            filterChain.doFilter(request, response);
+            return;
         }
 
-        chain.doFilter(req, res);
+        final String authHeader = request.getHeader("Authorization");
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        String token = authHeader.substring(7);
+        String username = jwtUtil.extractUsername(token);
+
+        if (username != null) {
+            UsernamePasswordAuthenticationToken auth =
+                    new UsernamePasswordAuthenticationToken(username, null, List.of());
+
+            SecurityContextHolder.getContext().setAuthentication(auth);
+        }
+
+        filterChain.doFilter(request, response);
     }
 }
