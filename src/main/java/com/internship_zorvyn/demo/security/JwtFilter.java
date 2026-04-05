@@ -13,18 +13,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.List;
-
 @Component
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwt;
     private final UserRepository repo;
-
-    public JwtFilter() {
-        this.repo = null;
-        this.jwt = null;
-    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest req,
@@ -39,19 +33,21 @@ public class JwtFilter extends OncePerRequestFilter {
             String token = header.substring(7);
             String email = jwt.extractUsername(token);
 
-            User user = repo.findByEmail(email).orElse(null);
+            if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            if (user != null) {
-                UsernamePasswordAuthenticationToken auth =
-                        new UsernamePasswordAuthenticationToken(
-                                email,
-                                null,
-                                List.of(() -> "ROLE_" + user.getRole())
-                        );
+                User user = repo.findByEmail(email).orElse(null);
 
-                auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
+                if (user != null) {
+                    UsernamePasswordAuthenticationToken auth =
+                            new UsernamePasswordAuthenticationToken(
+                                    email,
+                                    null,
+                                    List.of(() -> "ROLE_" + user.getRole())
+                            );
 
-                SecurityContextHolder.getContext().setAuthentication(auth);
+                    auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                }
             }
         }
 
