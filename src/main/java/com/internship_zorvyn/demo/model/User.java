@@ -23,7 +23,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    // ✅ CONSTRUCTORS
     public User() {}
 
     public User(Long id, String name, String email, String password, Role role, Status status) {
@@ -35,7 +34,7 @@ public class User {
         this.status = status;
     }
 
-    // ✅ GETTERS
+    
     public Long getId() {
         return id;
     }
@@ -60,7 +59,7 @@ public class User {
         return status;
     }
 
-    // ✅ SETTERS
+    
     public void setId(Long id) {
         this.id = id;
     }
