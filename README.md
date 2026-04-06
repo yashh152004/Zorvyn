@@ -1,58 +1,63 @@
+# 🚀 Finance Dashboard API
 
-🚀 Finance Dashboard API
+## A Secure & Scalable Backend System for Financial Management
 
-A secure and scalable backend system for managing financial data
+### 📌 Overview
 
-📌 Overview
+Finance Dashboard API is a Spring Boot backend application designed to manage financial data such as income and expenses.
+It integrates JWT-based authentication, role-based access control, and MySQL database operations to ensure security and performance.
 
-Finance Dashboard API is a Spring Boot backend application that enables users to manage income and expenses securely. It implements JWT authentication, role-based access control, and efficient database operations using MySQL.
-
-✨ Features
+### ✨ Key Features
 
 🔐 JWT Authentication & Authorization
-👥 Role-Based Access (ADMIN, ANALYST, VIEWER)
-🗄️ MySQL + JPA Integration
-🚀 Future Enhancements
-📊 Analytics Dashboard
+👥 Role-Based Access Control (ADMIN, ANALYST, VIEWER)
+💰 Income & Expense Management
+📊 Pagination & Data Filtering
+📈 Financial Summary (Income vs Expense)
+🗄️ MySQL Integration with JPA/Hibernate
 
-🛠️ Tech Stack
+### 🛠️ Tech Stack
+
 Backend: Spring Boot
 Security: Spring Security + JWT
 Database: MySQL
 ORM: Hibernate (JPA)
 Build Tool: Maven
-Java: 21
+Java Version: 21
 
-📁 Project Structure
+### 📁 Project Structure
 
 com.internship_zorvyn.demo
-├── controller
-├── service
-├── repository
-├── model
-├── dto
-├── security
-└── DemoApplication
 
-🔑 API Endpoints
+├── controller        # API endpoints
+├── service           # Business logic
+├── repository        # Database layer
+├── model             # Entity classes
+├── dto               # Request/Response DTOs
+├── security          # JWT & security config
+└── DemoApplication   # Main entry point
 
-Authentication
+### 🔑 API Endpoints
+
+🔐 Authentication
 POST /api/auth/login
-Financial Records
-POST /records              # Create record  
-GET  /records              # Get records  
-GET  /records/summary      # Get income & expense summary  
+💰 Financial Records
+POST   /records              → Create record  
 
-📥 Sample Request
+GET    /records              → Fetch records (pagination)  
+
+GET    /records/summary      → Income & Expense summary  
+
+### 📥 Sample Request
 
 <img width="1904" height="1011" alt="Screenshot 2026-04-06 012047" src="https://github.com/user-attachments/assets/ea86d90c-287e-4048-bba5-81336e338d7a" />
 
 
-🔐 Authorization
+### 🔐 Authorization
 
 Authorization: Bearer <JWT_TOKEN>
 
-⚙️ Setup
+### ⚙️ Setup
 
 git clone <repo-url>
 cd finance-dashboard
@@ -71,10 +76,10 @@ spring.datasource.password=your_password
 📈 Monthly Insights
 👨‍💻 Author
 
-Yashwardhan Kumar
+## Yashwardhan Kumar
 Backend Developer | Spring Boot | AI Enthusiast
 
-⭐ Summary
+## ⭐ Summary
 
 A production-ready backend system demonstrating secure API development, clean architecture, and real-world financial data handling build by me and took some help from ai tools.
 
